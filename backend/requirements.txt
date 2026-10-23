@@ -1,0 +1,38 @@
+# ============================================================
+# ChhayaRakshak AI — Backend Dependencies
+# Phase 0: core server only (health endpoint + DB setup)
+#
+# Packages for later phases are listed but commented out.
+# Uncomment each block when implementing that phase.
+# ============================================================
+
+# --- Core (Phase 0) -----------------------------------------
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+python-dotenv==1.0.1
+sqlalchemy==2.0.30
+httpx==0.27.0
+python-multipart==0.0.9
+
+# --- Testing (Phase 0) --------------------------------------
+pytest==8.2.0
+pytest-asyncio==0.23.6
+httpx==0.27.0          # also used as FastAPI test client transport
+
+# --- Phase 1: Heat Risk (Open-Meteo — no extra packages; uses httpx above)
+
+# --- Phase 2: AI Assistant (Gemini) -------------------------
+# google-generativeai is deprecated. Using google-genai (new SDK).
+# No protobuf conflict with opencv-python.
+google-genai
+
+# --- Phase 4: Image Analysis --------------------------------
+# opencv-python 4.10+ is required for NumPy 2.x compatibility
+opencv-python==4.10.0.84
+Pillow==10.3.0
+
+# --- Phase 5: Budget Optimizer ------------------------------
+# NOTE: ortools requires protobuf >= 5.26.1 — conflicts with google-generativeai < 0.8.x
+# Use ortools in a separate virtual environment or after upgrading google-generativeai.
+# Uncomment when starting Phase 5 (and remove google-generativeai or upgrade it):
+# ortools==9.10.4067

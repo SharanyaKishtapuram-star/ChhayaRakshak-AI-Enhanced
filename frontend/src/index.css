@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Global base ─────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-gray-800 font-sans;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* Custom scrollbar — subtle forest-green */
+  ::-webkit-scrollbar        { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track  { @apply bg-cream-dark; }
+  ::-webkit-scrollbar-thumb  { @apply bg-sage rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-primary-light; }
+}
+
+/* ── Utility layer ────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Page wrapper — consistent horizontal padding + vertical rhythm.
+     max-width is intentionally generous (5xl) so pages have room inside the
+     sidebar layout; the sidebar itself provides the left constraint. */
+  .page-wrapper {
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10;
+  }
+
+  /* Section title style */
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-widest text-primary-light/70 mb-3;
+  }
+
+  /* Card base — used as a utility applied via className */
+  .card {
+    @apply bg-white rounded-2xl border border-sage-light/50 shadow-card;
+  }
+  .card-hover {
+    @apply card transition-all duration-200 hover:shadow-card-md hover:border-sage;
+  }
+
+  /* Button primitives */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-gradient-to-r from-primary to-primary-light
+           text-white font-semibold px-5 py-2.5 rounded-xl
+           hover:from-primary-light hover:to-primary
+           active:scale-[0.98]
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-white text-primary border border-sage-light
+           font-medium px-5 py-2.5 rounded-xl
+           hover:border-sage hover:bg-sage-soft
+           active:scale-[0.98]
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2
+           bg-gradient-to-r from-accent to-accent-light
+           text-white font-semibold px-5 py-2.5 rounded-xl
+           hover:brightness-105
+           active:scale-[0.98]
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100;
+  }
+
+  /* Input base */
+  .input-field {
+    @apply w-full bg-white border border-sage-light/60 rounded-xl
+           px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400
+           focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage
+           transition-all duration-150;
+  }
+
+  /* Chip/badge */
+  .chip {
+    @apply inline-flex items-center gap-1 px-3 py-1
+           rounded-full text-xs font-medium border
+           transition-colors duration-150;
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply flex flex-col items-center justify-center
+           bg-white rounded-2xl border border-sage-light/40
+           shadow-card p-4 text-center;
+  }
+}
+
+/* ── Leaflet map overrides ────────────────────────────────────────────────── */
+/* Prevent Leaflet's default popup arrows clashing with our design */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(26,58,42,0.15) !important;
+  border: 1px solid #b8d9bd !important;
+  padding: 0 !important;
+}
+.leaflet-popup-content {
+  margin: 0 !important;
+  padding: 14px 16px !important;
+  min-width: 200px !important;
+}
+.leaflet-popup-tip {
+  background: white !important;
+}
+.leaflet-container {
+  font-family: "Inter", system-ui, sans-serif !important;
+}
